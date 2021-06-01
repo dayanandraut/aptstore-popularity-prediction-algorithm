@@ -138,11 +138,4 @@ print("Deleting files: ", deleted_files)
 print()
 pred = predict_popularity(accessed_files, deleted_files, popularity,block_numbers, l, c, s)
 print()
-print_predicted_popularity(pred) 
-
- 
-    
-    
-    
-    
-    
+print_predicted_popularity(pred)    
