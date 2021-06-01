@@ -13,19 +13,20 @@ I have implemented the Popularity Prediction algorithm (PPA) in python. I have u
 ### Sample simulation 
 I have randomly generated the initial popularity and number of blocks for random files and then predicted the popularity based on accessed and deleted files
 <p align="center">
-    <img src="images/input_ouput_sc.png" alt="sample input output" />
+    <img src="images/input_output.png" alt="sample input output" />
 </p>
 
 ### Visualization of Results
 
 <p align="center">
-    <img src="images/popularity_sc.png" alt="initial popularity" width=45%  />
-    <img src="images/block_sc.png" alt="number of blocks" width=45% /><br>
-    <span>Randomly generated initial popularity and number of blocks</span>
+    <img src="images/initial_popularity.png" alt="initial popularity" width=45%  />
+    <img src="images/blocks.png" alt="number of blocks" width=45% />
+    <img src="images/frequency.png" alt="number of accesses" width=45% /><br>
+    
 </p>
 <p align="center">
-    <img src="images/predicted_sc.png" alt="Predicted Popularity" width=75% /><br>
-     <span>Predicted popularity of files</span>
+    <img src="images/predicted_popularity.png" alt="Predicted Popularity" width=75% /><br>
+    
 </p>
 
 
