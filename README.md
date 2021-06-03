@@ -17,6 +17,30 @@ To determine how popular a file is, an algorithm is needed that can analyze the 
 
 In AptStore, a decision engine (DE) uses an algorithm to predict the expected popularity of files for the next reference time (RT) in the Hadoop cluster. This algorithm is called a **popularity prediction algorithm (PPA)**. Based on the predicted popularity score of the files, DE can suggest USS (Unified Storage System) on which files are to be kept in the primary storage and which ones to be kept in the secondary storage. It also gives insight to decide which files are to be replicated more and for which files replication is to be avoided. This decision helps in improving the i/o throughput as well as reducing the storage cost. **_Implement PPA which will predict the expected popularity of files using their initial popularity, access intervals, number of blocks and load in the cluster_**.
 
+## Algorithm Analysis
+
+The popularity value *P<sub>i+1</sub>(f)* of a file *f* varies with each access *i + 1* to the file. *P<sub>i+1</sub>(f)* is defined as:
+<p align="center">
+    <img src="images/algoformula1.png" alt="main formula" />
+</p>
+
+In the above formula, *c* is the popularity constant, *a(f)* is a function of the access interval of file *f*, *l* is the load in the cluster and *b(f)* is a function of number of blocks in the file f. During the creation of a file, the popularity of the file *P<sub>1</sub>(f)* is initialized to average file popularity observed in the system, AVG(P). Whenever a file is deleted, it will result in popularity of other files being modified when the values are updated at the end of RT. When a popular file is deleted, the popularity of other files in the system increases. Conversely, when an unpopular file is deleted, the popularity of other files decreases.
+
+After the accesses of all files in the reference time RT are processed the popularity value *P<sub>i</sub>(f)* of a file f for the most recent access i is modified as follows:
+
+ <p align="center">
+    <img src="images/algo_formula2.png" alt="formula2" />
+</p>
+
+MIP is the mean increase in the popularity of the file *f* during reference time RT, *AVG(P)* is the average popularity of all the files in the cluster, *s* is the scalability constant. The mean increase in popularity is a fraction of increase in popularity, IP during RT over F, the set of all files in the system. The scalability constant s is used to contract or expand the amount of data stored in primary storage. For a value of s greater than one, more data is pushed to primary, while a positive value of s, less than one, creates more space in the primary storage.
+
+## Implementation Details
+
+**The PPA algorithm is implemented in Python using Dynamic Programming ( Bottom-Up Approach )**
+```
+
+```
+
 ## Simulation and Result
 
 ### Sample Input Data simulation 
