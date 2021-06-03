@@ -144,10 +144,17 @@ As I could not find the actual USS audit logs, I simulated the input data by ran
     <img src="images/output_graph.png" alt="Output graph" />    
 </p>
 
+## Other Resources
+I have uploaded the following resources for PPA - 
+- [Source Code](aptstore_popularity_prediction_algorithm.py)
+- [Jupyter NoteBook](aptstore_popularity_prediction_algorithm.ipynb)
+- [Report in PDF]()
+- [Powerpoint Presentation]()
+
 
 ## Reference
 K. R. Krish, A. Khasymski, A. R. Butt, S. Tiwari and M. Bhandarkar, "AptStore: Dynamic storage management for hadoop," 2013 IEEE International Conference on Cluster Computing (CLUSTER), 2013, pp. 1-5, doi: 10.1109/CLUSTER.2013.6702657.
 
-## Help
+## Feedback
 If you find any issue in my implementation or documentation, please let me know. Thanks for reading.
 
