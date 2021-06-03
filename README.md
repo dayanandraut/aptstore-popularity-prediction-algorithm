@@ -148,8 +148,8 @@ As I could not find the actual USS audit logs, I simulated the input data by ran
 I have uploaded the following resources for PPA - 
 - [Source Code](aptstore_popularity_prediction_algorithm.py)
 - [Jupyter NoteBook](aptstore_popularity_prediction_algorithm.ipynb)
-- [Report in PDF]()
-- [Powerpoint Presentation]()
+- [Report in PDF](ppa_report.pdf)
+- [Powerpoint Presentation](ppa_ppt.pptx)
 
 
 ## Reference
