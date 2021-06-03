@@ -37,8 +37,52 @@ MIP is the mean increase in the popularity of the file *f* during reference time
 ## Implementation Details
 
 **The PPA algorithm is implemented in Python using Dynamic Programming ( Bottom-Up Approach )**
-```
-
+```python
+def predict_popularity(accessed_files, deleted_files, popularity,block_numbers, l, c, s, Pmin, Pmax):
+    P = {}
+    IP = 0
+    Pred = {}
+    avg_popularity = find_average_popularity(popularity)
+    for f in set(accessed_files):
+        P[f] = [0]
+        
+    for k in range(0, len(accessed_files)-1):
+        f = accessed_files[k]
+        i = len(P[f])-1
+        
+        if(i==0):
+            P[f].append(avg_popularity)
+            continue
+        
+        else:
+            a = find_access_interval(f,k,accessed_files)
+            b = find_block_numbers(f, block_numbers)
+            calc = P[f][i] + c / (a*b*l*P[f][i])
+            P[f].append(calc)
+            
+        if(P[f][i]<Pmin):
+            P[f][i] = Pmin 
+                    
+        if(P[f][i]>Pmax):           
+            P[f][i] = Pmax 
+        
+        IP = IP + P[f][i+1] - P[f][i]
+                
+    for f in deleted_files:
+        IP = IP + avg_popularity - popularity[f]
+        del P[f]
+        del popularity[f]
+        del block_numbers[f]
+        
+    MIP = IP / len(P)
+ 
+    for f in P:
+        i = len(P[f]) - 1
+        P[f][i] = P[f][i] - MIP/s
+        Pred[f] = P[f][i] + popularity[f]
+        popularity[f] = P[f][i]       
+        
+    return Pred
 ```
 
 ## Simulation and Result
