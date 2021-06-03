@@ -21,7 +21,7 @@ In AptStore, a decision engine (DE) uses an algorithm to predict the expected po
 
 The popularity value *P<sub>i+1</sub>(f)* of a file *f* varies with each access *i + 1* to the file. *P<sub>i+1</sub>(f)* is defined as:
 <p align="center">
-    <img src="images/algoformula1.png" alt="main formula" />
+    <img src="images/algo_formula1.png" alt="main formula" />
 </p>
 
 In the above formula, *c* is the popularity constant, *a(f)* is a function of the access interval of file *f*, *l* is the load in the cluster and *b(f)* is a function of number of blocks in the file f. During the creation of a file, the popularity of the file *P<sub>1</sub>(f)* is initialized to average file popularity observed in the system, AVG(P). Whenever a file is deleted, it will result in popularity of other files being modified when the values are updated at the end of RT. When a popular file is deleted, the popularity of other files in the system increases. Conversely, when an unpopular file is deleted, the popularity of other files decreases.
@@ -85,7 +85,34 @@ def predict_popularity(accessed_files, deleted_files, popularity,block_numbers, 
     return Pred
 ```
 
+- accessed_files : list of accessed files
+- deleted_files : list of deleted files
+- block_numbers : dictionary containing the number of blocks in files
+- popularity:  dictionary containing the initial popularity of file
+- l: load in the cluster
+- c: popularity constant
+- s: scalability constant
+- P {}: dictionary of list to store the expected popularity of each access of each file
+- P[i][f] = expected popularity of file f at ith access
+- i = len(P[f])-1
+- For i = 1, P[f][i] = average popularity in the cluster
+- For i>1, P[f].append( P[f][i] + c / access_interval(f) * l * block_number(f) * P[f][i] ) 
+- access_interval(f): the interval between current and last access of f
+- block_numbers(f): number of blocks in file f
+- Pred: dictionary to store expected predicted popularity of each file
+
+
 ## Simulation and Result
+
+As I could not find the actual USS audit logs, I simulated the input data by randomly generating the values for accessed_files, deleted_files, popularity, block_numbers.
+- accessed_files[] : list of randomly generated files from 1 to 9 for a random number 14 to 18.
+- deleted_files[] : list of randomly chosen files from the accessed_files
+- block_numbers{}: a dictionary that maps random number (1,50) to each unique file of accessed_files
+- popularity{}: a dictionary that maps random number in the range of Pmin =0.1  to Pmax=0.9 ) each unique file of accessed_files
+- c = 10000
+- l = 9
+- s = 5
+
 
 ### Sample Input Data simulation 
 - Files are generated randomly and added to accessed_files list. 
@@ -118,10 +145,9 @@ def predict_popularity(accessed_files, deleted_files, popularity,block_numbers, 
 </p>
 
 
-
-
-If any issue is found in my implementation, please let me know. Thanks for reading.
-
 ## Reference
 K. R. Krish, A. Khasymski, A. R. Butt, S. Tiwari and M. Bhandarkar, "AptStore: Dynamic storage management for hadoop," 2013 IEEE International Conference on Cluster Computing (CLUSTER), 2013, pp. 1-5, doi: 10.1109/CLUSTER.2013.6702657.
+
+## Help
+If you find any issue in my implementation or documentation, please let me know. Thanks for reading.
 
