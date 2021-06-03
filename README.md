@@ -36,7 +36,7 @@ MIP is the mean increase in the popularity of the file *f* during reference time
 
 ## Implementation Details
 
-**The PPA algorithm is implemented in Python using Dynamic Programming ( Bottom-Up Approach )**
+**I have implemented the PPA algorithm in Python using Dynamic Programming ( Bottom-Up Approach )**
 ```python
 def predict_popularity(accessed_files, deleted_files, popularity,block_numbers, l, c, s, Pmin, Pmax):
     P = {}
